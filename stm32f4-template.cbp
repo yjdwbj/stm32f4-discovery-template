@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="arm-elf-gcc" />
 				<Compiler>
+					<Add option="-std=c99" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -23,9 +24,11 @@
 			<Add option="-O2" />
 			<Add option="-Wall" />
 			<Add option="-mcpu=cortex-m4" />
-			<Add option="-mfloat-abi=softfp" />
+			<Add option="-mfloat-abi=hard" />
 			<Add option="-mfpu=fpv4-sp-d16" />
+			<Add option="-Xlinker -gc-sections" />
 			<Add option="-DUSE_STDPERIPH_DRIVER" />
+			<Add option="-DSTM32F4XX" />
 			<Add directory="." />
 			<Add directory="STM32F4xx_StdPeriph_Driver/inc" />
 			<Add directory="STM32F4-Discovery" />
@@ -38,13 +41,19 @@
 		</Linker>
 		<ExtraCommands>
 			<Add after="arm-none-eabi-objcopy $exe_output -O ihex $exe_output.hex" />
-			<Add after="./codeblocks_telnet_openocd.sh $exe_output.hex" />
+			<Add after="./codeblocks_telnet_openocd.sh $(PROJECT_DIR)$(TARGET_OUTPUT_DIR)$(PROJECT_NAME).hex" />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="STM32F4xx_StdPeriph_Driver/src/misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="codeblocks_telnet_openocd.sh">
