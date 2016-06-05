@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="stm32f4-template" />
+		<Option pch_mode="2" />
+		<Option compiler="arm-elf-gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/stm32f4-template" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-mthumb" />
+			<Add option="-mthumb-interwork" />
+			<Add option="-mlittle-endian" />
+			<Add option="-O2" />
+			<Add option="-Wall" />
+			<Add option="-mcpu=cortex-m4" />
+			<Add option="-mfloat-abi=softfp" />
+			<Add option="-mfpu=fpv4-sp-d16" />
+			<Add option="-DUSE_STDPERIPH_DRIVER" />
+			<Add directory="." />
+			<Add directory="STM32F4xx_StdPeriph_Driver/inc" />
+			<Add directory="STM32F4-Discovery" />
+			<Add directory="CMSIS/Include" />
+			<Add directory="CMSIS/ST/STM32F4xx/Include" />
+		</Compiler>
+		<Linker>
+			<Add option="-Tstm32_flash.ld" />
+			<Add directory="/home/michael/Embedded-System/gcc-arm-none-eabi-4_9-2015q3/lib/gcc/arm-none-eabi/4.9.3" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="arm-none-eabi-objcopy $exe_output -O ihex $exe_output.hex" />
+			<Add after="./codeblocks_telnet_openocd.sh $exe_output.hex" />
+			<Mode after="always" />
+		</ExtraCommands>
+		<Unit filename="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="codeblocks_telnet_openocd.sh">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="startup_stm32f4xx.s" />
+		<Unit filename="stm32_flash.ld" />
+		<Unit filename="stm32f4xx_conf.h" />
+		<Unit filename="stm32f4xx_it.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="stm32f4xx_it.h" />
+		<Unit filename="system_stm32f4xx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
